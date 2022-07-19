@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 14-07-2022 a las 12:39:48
+-- Tiempo de generación: 19-07-2022 a las 20:55:13
 -- Versión del servidor: 8.0.29
 -- Versión de PHP: 7.4.26
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `educacion` (
   `titulo` varchar(45) DEFAULT NULL,
   `fechaInicio` date DEFAULT NULL,
   `fechaFin` date DEFAULT NULL,
-  `urlIcono` varchar(100) DEFAULT NULL,
+  `urlIcono` blob,
   `persona_id` int NOT NULL,
   PRIMARY KEY (`ideducacion`,`persona_id`),
   KEY `fk_educacion_persona1_idx` (`persona_id`)
@@ -74,8 +74,8 @@ CREATE TABLE IF NOT EXISTS `educacion` (
 --
 
 INSERT INTO `educacion` (`ideducacion`, `nombreInstitucion`, `titulo`, `fechaInicio`, `fechaFin`, `urlIcono`, `persona_id`) VALUES
-(1, 'UNL', 'Doctor en Ingeniería Química', '2017-04-01', '2022-07-08', 'www.foto.com/iconounl', 1),
-(2, 'UNL', 'Ingeniero Químico', '2011-03-01', '2017-02-27', 'www.foto.com/iconounl', 1);
+(1, 'UNL', 'Doctor en Ingeniería Química', '2017-04-01', '2022-07-08', 0x7777772e666f746f2e636f6d2f69636f6e6f756e6c, 1),
+(2, 'UNL', 'Ingeniero Químico', '2011-03-01', '2017-02-27', 0x7777772e666f746f2e636f6d2f69636f6e6f756e6c, 1);
 
 -- --------------------------------------------------------
 
@@ -170,12 +170,13 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `id` int NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
+  `profesion` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8_general_ci DEFAULT NULL,
   `domicilio` varchar(45) DEFAULT NULL,
   `fechaNac` date DEFAULT NULL,
   `telefono` varchar(12) DEFAULT NULL,
   `correo` varchar(45) DEFAULT NULL,
   `sobre_mi` varchar(200) DEFAULT NULL,
-  `url_foto` varchar(100) DEFAULT NULL,
+  `url_foto` blob,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -183,8 +184,8 @@ CREATE TABLE IF NOT EXISTS `persona` (
 -- Volcado de datos para la tabla `persona`
 --
 
-INSERT INTO `persona` (`id`, `nombre`, `apellido`, `domicilio`, `fechaNac`, `telefono`, `correo`, `sobre_mi`, `url_foto`) VALUES
-(1, 'Agustin', 'Forchetti', 'Santa Fe', '1991-06-09', '4122345', 'agu@gmail.com', 'Entusiasta de la programación', 'www.foto.com/fotoagu');
+INSERT INTO `persona` (`id`, `nombre`, `apellido`, `profesion`, `domicilio`, `fechaNac`, `telefono`, `correo`, `sobre_mi`, `url_foto`) VALUES
+(1, 'Agustin', 'Forchetti', 'Doctor en Ingeniería Química', 'Santa Fe', '1991-06-09', '4122345', 'agu@gmail.com', 'Entusiasta de la programación', 0x7777772e666f746f2e636f6d2f666f746f616775);
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `proyectos` (
   `fechaInicio` date DEFAULT NULL,
   `fechaFin` date DEFAULT NULL,
   `descripcionProyecto` varchar(45) DEFAULT NULL,
-  `urlIconoProyecto` varchar(100) DEFAULT NULL,
+  `urlIconoProyecto` blob,
   `persona_id` int NOT NULL,
   PRIMARY KEY (`idproyectos`,`persona_id`),
   KEY `fk_proyectos_persona1_idx` (`persona_id`)
@@ -210,8 +211,8 @@ CREATE TABLE IF NOT EXISTS `proyectos` (
 --
 
 INSERT INTO `proyectos` (`idproyectos`, `nombreProyecto`, `fechaInicio`, `fechaFin`, `descripcionProyecto`, `urlIconoProyecto`, `persona_id`) VALUES
-(1, 'Desarrollo de Termoestables Biobasados', '2017-04-01', '2022-07-08', 'Desarrollo de Benzoxazinas', 'www.icono.com/iconoproyecto', 1),
-(2, 'Portoflio Web AR Programa', '2022-02-01', '2022-08-31', 'Desarrollo de CV WEB', 'www.icono.com/iconoproyecto2', 1);
+(1, 'Desarrollo de Termoestables Biobasados', '2017-04-01', '2022-07-08', 'Desarrollo de Benzoxazinas', 0x7777772e69636f6e6f2e636f6d2f69636f6e6f70726f796563746f, 1),
+(2, 'Portoflio Web AR Programa', '2022-02-01', '2022-08-31', 'Desarrollo de CV WEB', 0x7777772e69636f6e6f2e636f6d2f69636f6e6f70726f796563746f32, 1);
 
 -- --------------------------------------------------------
 
